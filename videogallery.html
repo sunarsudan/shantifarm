@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Gallery</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="images/logo3.png">
+<style>
+
+	@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+    /* Subtle Background Texture */
+    body {
+      background: whitesmoke;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    /* Fade In Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating Leaves */
+  .leaf {
+    position: fixed;
+    top: -10%;
+    width: 40px;
+    opacity: 0.15;
+    animation: floatLeaf linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes floatLeaf {
+    0% {
+      transform: translateY(-10vh) translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(110vh) translateX(100px) rotate(360deg);
+    }
+  }
+
+
+  /* Existing styles here ... */
+
+  /* Zoom effect on images */
+  .fade-in img {
+    transition: transform 0.4s ease;
+  }
+
+  .fade-in img:hover,
+  .fade-in img:active,
+  .fade-in img:focus {
+    transform: scale(1.1);
+  }
+
+
+	/*langugae translator*/
+ /* Hide Google Translate top banner only */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+
+/*gallery dropdown */
+/* Dropdown hidden by default */
+.dropdown{
+  display: none;
+}
+
+/* Show dropdown when active */
+.dropdown.show{
+  display: block;
+}
+
+
+
+    /*langugae translator*/
+  /* Hide Google Translate top banner */
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+  display:none !important;
+}
+
+body{
+  top:0px !important;
+}
+
+.skiptranslate{
+  display:none !important;
+}
+
+
+
+</style>
+</head>
+
+<body class="bg-gray-100">
+
+	  <!-- preloader -->
+<div id="preloader" class="fixed inset-0 bg-green-950 flex items-center justify-center z-50">
+  <div class="flex space-x-3">
+    <div class="w-4 h-4 bg-white rounded-full animate-bounce"></div>
+    <div class="w-4 h-4 bg-white rounded-full animate-bounce [animation-delay:0.2s]"></div>
+    <div class="w-4 h-4 bg-white rounded-full animate-bounce [animation-delay:0.4s]"></div>
+  </div>
+</div>
+
+	<!-- navbar -->
+
+	 <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full h-20 z-50
+            bg-transparent dark:bg-black/40 backdrop-blur-md">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center justify-between">
+
+    <!-- Logo (Left Corner) -->
+    <a class="flex items-center gap-2 md:gap-3" href="index.html">
+      <img src="images/logo3.png" class="h-[60px] w-[60px] md:h-[90px] md:w-[90px] animate-[float_3s_ease-in-out_infinite] " alt="Logo">
+
+      <h3 class="font-bold md:text-xl text-white tracking-wide
+           [text-shadow:1px_2px_6px_rgba(0,0,0,0.65)]">
+  Manashanti Krishi Farm
+</h3>
+
+    </a>
+    <button id="menuBtn" class="md:hidden text-white text-3xl">
+  ☰
+</button>
+    <ul id="mobileMenu" class="fixed top-20 left-0 w-full bg-green-800/95 text-white 
+flex flex-col items-center gap-6 py-6
+hidden transition-all duration-300 ease-in-out
+md:static md:flex md:flex-row md:gap-8 md:bg-transparent md:py-0 md:ml-32">
+      <li><a href="index.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">Home</a></li>
+      <li><a href="aboutus.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">About Us</a></li>
+      <li><a href="contact us.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">Contact Us</a></li>
+      <li>
+  <div class="relative">
+
+    <!-- Button -->
+    <button onclick="toggleMenu()"
+      class="flex items-center px-3 py-1.5 rounded-lg transition-all duration-300
+      hover:-translate-y-0.5
+      hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+      hover:text-green-500">
+
+      Gallery
+
+      <svg id="arrow" xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4 transition-transform duration-300"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+        <path stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+
+    </button>
+
+    <!-- Dropdown -->
+    <div id="menu"
+      class="dropdown absolute left-0 mt-3 w-60
+      bg-white/10 backdrop-blur-xl
+      border border-white/20
+      shadow-2xl rounded-2xl overflow-hidden">
+
+      <ul class="text-white text-sm">
+
+        <li class="px-5 py-3 hover:bg-white/20 transition">
+          <a href="gallery.html">📸 Photos</a>
+        </li>
+
+        <li class="px-5 py-3 hover:bg-white/20 transition">
+          <a href="videogallery.html">🎥 Videos</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</li>
+        
+        </li>
+      <li><a href="ourproduct.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">Our Products</a></li>
+    
+    </ul>
+
+ <div class="flex gap-2 text-xs sm:text-sm md:text-base font-semibold ml-2 sm:ml-4">
+
+  <button onclick="translateToEnglish()" 
+    class="flex items-center justify-center px-2 sm:px-3 md:px-4 py-1 sm:py-2 gap-2 
+    rounded-md border border-white text-white 
+    hover:bg-white hover:text-green-900 transition">
+    <img src="https://flagcdn.com/w20/gb.png" class="w-4 sm:w-5 md:w-6 h-auto">
+    <span translate="no">EN</span>
+  </button>
+
+  <button onclick="translateToNepali()" 
+    class="flex items-center justify-center px-2 sm:px-3 md:px-4 py-1 sm:py-2 gap-2 
+    rounded-md border border-white text-white 
+    hover:bg-white hover:text-green-900 transition">
+    <img src="https://flagcdn.com/np.svg" class="w-4 sm:w-5 md:w-6 h-auto">
+    <span translate="no">नेपाली</span>
+  </button>
+
+</div>
+<div id="google_translate_element" style="display: none;"></div>
+  </div>
+</nav>
+
+
+<!-- Videos Section -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-6">
+
+<!-- Section Title -->
+<h2 class="text-3xl font-bold text-center mb-12 mt-12 text-[#0D5441]">
+Our Video Section
+</h2>
+
+<!-- Video Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+<!-- Video 1 -->
+<div class="overflow-hidden rounded-xl shadow-lg bg-white">
+<video controls class="w-full h-72 object-cover">
+<source src="videos/video1.mp4" type="video/mp4">
+</video>
+<p class="text-center py-3 font-medium text-gray-700">Harvesting Rosemary oil from Rosemary Plant</p>
+</div>
+
+<!-- Video 2 -->
+<div class="overflow-hidden rounded-xl shadow-lg bg-white">
+<video controls class="w-full h-72 object-cover">
+<source src="videos/video2.mp4" type="video/mp4">
+</video>
+<p class="text-center py-3 font-medium text-gray-700">Harvesting Rosemary oil from Rosemary Plant</p>
+</div>
+
+<!-- Video 3 -->
+<div class="overflow-hidden rounded-xl shadow-lg bg-white">
+<video controls class="w-full h-72 object-cover">
+<source src="videos/video3.mp4" type="video/mp4">
+</video>
+<p class="text-center py-3 font-medium text-gray-700">Agricultural Foot Sprayer</p>
+</div>
+
+<!-- Video 4 -->
+<div class="overflow-hidden rounded-xl shadow-lg bg-white">
+<video controls class="w-full h-72 object-cover">
+<source src="videos/video4.mp4" type="video/mp4">
+</video>
+<p class="text-center py-3 font-medium text-gray-700">Post Hole Digger</p>
+</div>
+
+<!-- Video 5 -->
+<div class="overflow-hidden rounded-xl shadow-lg bg-white">
+<video controls class="w-full h-72 object-cover">
+<source src="videos/video5.mp4" type="video/mp4">
+</video>
+<p class="text-center py-3 font-medium text-gray-700">Grass Cutting Machine</p>
+</div>
+
+<!-- Video 6 -->
+<div class="overflow-hidden rounded-xl shadow-lg bg-white">
+<video controls class="w-full h-72 object-cover">
+<source src="videos/video6.mp4" type="video/mp4">
+</video>
+<p class="text-center py-3 font-medium text-gray-700">Rosemary Plant</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- footer -->
+<footer class="relative bg-gradient-to-br from-green-900 via-emerald-800 to-green-700 text-white pt-16 pb-8 overflow-hidden">
+
+  <!-- Glass Overlay -->
+  <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+
+    <!-- Company Info -->
+    <div>
+      <h2 class="text-xl font-bold mb-4 tracking-wide">
+        🥝 Manashanti Agriculture Kiwi Pvt. Ltd.
+      </h2>
+      <p class="text-sm text-green-100 leading-relaxed">
+        Committed to sustainable farming, organic cultivation,
+        and livestock management. Delivering premium farm
+        products across Nepal and foreign countries.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="font-semibold text-lg mb-4 border-b border-green-400 inline-block">
+        Quick Links
+      </h3>
+      <ul class="space-y-3 text-sm">
+        <li><a href="index.html" class="hover:text-yellow-300 transition duration-300">Home</a></li>
+        <li><a href="products.html" class="hover:text-yellow-300 transition duration-300">Products</a></li>
+        <li><a href="aboutus.html" class="hover:text-yellow-300 transition duration-300">About Us</a></li>
+        <li><a href="contact us.html" class="hover:text-yellow-300 transition duration-300">Contact Us</a></li>
+         <li><a href="gallery.html" class="hover:text-yellow-300 transition duration-300">Gallery</a></li>
+      </ul>
+    </div>
+
+    <!-- Our Products -->
+    <div>
+      <h3 class="font-semibold text-lg mb-4 border-b border-green-400 inline-block">
+        Our Products
+      </h3>
+      <ul class="space-y-3 text-sm">
+        <li><a href="#" class="hover:text-yellow-300 transition duration-300">Herbs</a></li>
+        <li><a href="#" class="hover:text-yellow-300 transition duration-300">Fruits</a></li>
+        <li><a href="#" class="hover:text-yellow-300 transition duration-300">Livestock</a></li>
+        <li><a href="#" class="hover:text-yellow-300 transition duration-300">Nursery Plants</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+     <h3 class="font-semibold text-lg mb-4 border-b border-green-400 inline-block">
+        Contact Us
+      </h3>
+      <p class="text-sm text-green-100 mb-2">
+        <i class="fa-solid fa-location-dot mr-2 text-yellow-300"></i>
+        Triveni-06, Rukum (West), Nepal
+      </p>
+      <p class="text-sm text-green-100 mb-2">
+        <i class="fa-solid fa-phone mr-2 text-yellow-300"></i>
+        +977 9863462325
+      </p>
+      <p class="text-sm text-green-100">
+        <i class="fa-solid fa-envelope mr-2 text-yellow-300"></i>
+        manashantiagro@gmail.com
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Social + Copyright -->
+  <div class="relative mt-12 text-center">
+
+  <!-- Social Icons -->
+<div class="flex justify-center gap-6 mb-6 text-xl">
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/profile.php?id=100064130017844"
+     target="_blank"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-[#1877F2] hover:text-white 
+            transition duration-300">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <!-- YouTube -->
+  <a href="http://youtube.com/@karnaraj-u8v/videos"
+     target="_blank"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-[#FF0000] hover:text-white 
+            transition duration-300">
+    <i class="fab fa-youtube"></i>
+  </a>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/9779863462325?text=Hello%20EverGreen%20Agro,%20I%20want%20to%20know%20more%20about%20your%20products."
+     target="_blank"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-[#25D366] hover:text-white 
+            transition duration-300">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- TikTok -->
+  <a href="https://www.tiktok.com/@karnarajoli1234"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-black hover:text-[#00f2ea] 
+            transition duration-300">
+    <i class="fab fa-tiktok"></i>
+  </a>
+
+  <!-- Phone -->
+  <a href="+9779863462325"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-green-600 hover:text-white 
+            transition duration-300">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
+</div>
+    <!-- Grey Divider Line -->
+<div class="w-full h-[1px] bg-gray-400 mx-auto mb-6 opacity-50"></div>
+
+    <p class="text-sm text-green-200">
+      © 2026 Manashanti Agriculture Kiwi Pvt. Ltd. All rights reserved.
+    </p>
+  </div>
+
+</footer>
+
+<!-- JavaScript for single video play -->
+<script>
+// preloader
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("preloader");
+
+    setTimeout(() => {
+      loader.classList.remove("opacity-100");
+      loader.classList.add("opacity-0");
+
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 500);
+
+    }, 1500);
+  });
+</script>
+
+<!-- language translator -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      includedLanguages: 'en,ne',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
+}
+
+function translateToNepali(){
+  changeLanguage("ne");
+}
+
+function translateToEnglish(){
+  changeLanguage("en");
+}
+
+function changeLanguage(lang){
+  const interval = setInterval(function(){
+    const select = document.querySelector(".goog-te-combo");
+    if(select){
+      select.value = lang;
+      select.dispatchEvent(new Event("change"));
+      clearInterval(interval);
+    }
+  },200);
+}
+
+/* Remove google banner completely */
+setInterval(function () {
+  const frame = document.querySelector('.goog-te-banner-frame');
+  if (frame) frame.style.display = 'none';
+  document.body.style.top = '0px';
+}, 100);
+
+// gallery media 
+const menu = document.getElementById("menu");
+const arrow = document.getElementById("arrow");
+
+function toggleMenu() {
+  menu.classList.toggle("show");
+  arrow.classList.toggle("rotate-180");
+}
+
+/* Close dropdown when clicking outside */
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".relative")){
+    menu.classList.remove("show");
+    arrow.classList.remove("rotate-180");
+  }
+});
+
+
+
+
+  /* =========================
+     HAMBURGER MENU LOGIC
+  ========================= */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Close menu when link is clicked (mobile UX)
+  document.querySelectorAll("#mobileMenu a").forEach(item => {
+  item.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+  });
+});
+
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+const videos = document.querySelectorAll("video");
+
+// Only one video plays at a time
+videos.forEach(video => {
+  video.addEventListener("play", () => {
+    videos.forEach(v => {
+      if (v !== video) {
+        v.pause();
+      }
+    });
+  });
+});
+
+// Exit fullscreen when ESC is pressed
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+  }
+});
+</script>
+</body>
+</html>

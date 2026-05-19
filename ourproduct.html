@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Agriculture Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   <!-- fab icon -->
+  <link rel="shortcut icon" type="image/png" sizes="512x512" href="images/logo3.png">
+
+  <style>
+    /*logo animation*/
+    @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+
+body {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("https://images.unsplash.com/photo-1625246333195-78d9c38ad449?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWdyaWN1bHR1cmV8ZW58MHx8MHx8fDA%3D&fbclid=IwY2xjawQL-zdleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEew_xWnT_UGjmHe011zDIpAlKYrvFTEbs8hK-vkwiez23ynU-A6TGLrfOO0YY_aem_G_3V79uy0vhMmKtfwrX-4g");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    /* Fade In Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating Leaves */
+  .leaf {
+    position: fixed;
+    top: -10%;
+    width: 40px;
+    opacity: 0.15;
+    animation: floatLeaf linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes floatLeaf {
+    0% {
+      transform: translateY(-10vh) translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(110vh) translateX(100px) rotate(360deg);
+    }
+  }
+
+
+  /* Existing styles here ... */
+
+  /* Zoom effect on images */
+  .fade-in img {
+    transition: transform 0.4s ease;
+  }
+
+  .fade-in img:hover,
+  .fade-in img:active,
+  .fade-in img:focus {
+    transform: scale(1.1);
+  }
+
+
+    /*langugae translator*/
+  /* Hide Google Translate top banner */
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+  display:none !important;
+}
+
+body{
+  top:0px !important;
+}
+
+.skiptranslate{
+  display:none !important;
+}
+
+
+/*gallery dropdown */
+/* Dropdown hidden by default */
+.dropdown{
+  display: none;
+}
+
+/* Show dropdown when active */
+.dropdown.show{
+  display: block;
+}
+</style>
+</head>
+
+<body class="text-white">
+
+  <!-- preloader -->
+<div id="preloader" class="fixed inset-0 bg-green-950 flex items-center justify-center z-50">
+  <div class="flex space-x-3">
+    <div class="w-4 h-4 bg-white rounded-full animate-bounce"></div>
+    <div class="w-4 h-4 bg-white rounded-full animate-bounce [animation-delay:0.2s]"></div>
+    <div class="w-4 h-4 bg-white rounded-full animate-bounce [animation-delay:0.4s]"></div>
+  </div>
+</div>
+
+    <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full h-20 z-50
+            bg-transparent dark:bg-black/40 backdrop-blur-md">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center justify-between">
+
+    <!-- Logo (Left Corner) -->
+    <a class="flex items-center gap-2 md:gap-3" href="index.html">
+      <img src="images/logo3.png" class="h-[60px] w-[60px] md:h-[90px] md:w-[90px] animate-[float_3s_ease-in-out_infinite] " alt="Logo">
+
+      <h3 class="font-bold md:text-xl text-white tracking-wide
+           [text-shadow:1px_2px_6px_rgba(0,0,0,0.65)]">
+  Manashanti Krishi Farm
+</h3>
+
+    </a>
+    <button id="menuBtn" class="md:hidden text-white text-3xl">
+  ☰
+</button>
+    <ul id="mobileMenu" class="fixed top-20 left-0 w-full bg-green-800/95 text-white 
+flex flex-col items-center gap-6 py-6
+hidden transition-all duration-300 ease-in-out
+md:static md:flex md:flex-row md:gap-8 md:bg-transparent md:py-0 md:ml-32">
+      <li><a href="index.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">Home</a></li>
+      <li><a href="aboutus.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">About Us</a></li>
+      <li><a href="contact us.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">Contact Us</a></li>
+      <li>
+  <div class="relative">
+
+    <!-- Button -->
+    <button onclick="toggleMenu()"
+      class="flex items-center px-3 py-1.5 rounded-lg transition-all duration-300
+      hover:-translate-y-0.5
+      hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+      hover:text-green-500">
+
+      Gallery
+
+      <svg id="arrow" xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4 transition-transform duration-300"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+        <path stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+
+    </button>
+
+    <!-- Dropdown -->
+    <div id="menu"
+      class="dropdown absolute left-0 mt-3 w-60
+      bg-white/10 backdrop-blur-xl
+      border border-white/20
+      shadow-2xl rounded-2xl overflow-hidden">
+
+      <ul class="text-white text-sm">
+
+        <li class="px-5 py-3 hover:bg-white/20 transition">
+          <a href="gallery.html">📸 Photos</a>
+        </li>
+
+        <li class="px-5 py-3 hover:bg-white/20 transition">
+          <a href="videogallery.html">🎥 Videos</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</li>
+        
+        </li>
+      <li><a href="ourproduct.html" class="px-3 py-1.5 rounded-lg transition-all duration-300
+          hover:-translate-y-0.5
+          hover:[box-shadow:0_10px_25px_rgba(0,0,0,0.4)]
+          hover:text-green-500">Our Products</a></li>
+    
+    </ul>
+
+ <div class="flex gap-2 text-xs sm:text-sm md:text-base font-semibold ml-2 sm:ml-4">
+
+  <button onclick="translateToEnglish()" 
+    class="flex items-center justify-center px-2 sm:px-3 md:px-4 py-1 sm:py-2 gap-2 
+    rounded-md border border-white text-white 
+    hover:bg-white hover:text-green-900 transition">
+    <img src="https://flagcdn.com/w20/gb.png" class="w-4 sm:w-5 md:w-6 h-auto">
+    <span translate="no">EN</span>
+  </button>
+
+  <button onclick="translateToNepali()" 
+    class="flex items-center justify-center px-2 sm:px-3 md:px-4 py-1 sm:py-2 gap-2 
+    rounded-md border border-white text-white 
+    hover:bg-white hover:text-green-900 transition">
+    <img src="https://flagcdn.com/np.svg" class="w-4 sm:w-5 md:w-6 h-auto">
+    <span translate="no">नेपाली</span>
+  </button>
+
+</div>
+<div id="google_translate_element" style="display: none;"></div>
+  </div>
+</nav>
+
+
+  <!-- Our Products Section -->
+  <section class="py-20 px-6 lg:px-20">
+    
+    <!-- Heading -->
+<div class="text-center mb-16 fade-in mt-12">
+  <h2 class="text-3xl md:text-4xl font-bold text-white">
+    Our Fresh Farm Products
+  </h2>
+  <p class="text-white mt-4 max-w-2xl mx-auto">
+    We provide high-quality organic agricultural products directly from our farms.
+  </p>
+</div>
+
+<!-- Category Filter Buttons -->
+<div class="flex flex-wrap justify-center gap-4 mb-12">
+  <button onclick="filterProducts('all')" 
+          class="filter-btn bg-white/20 px-6 py-2 rounded-full 
+                 transition-all duration-300 ease-in-out
+                 hover:-translate-y-1 hover:scale-105
+                 hover:bg-[#0D5441] hover:shadow-lg hover:shadow-[#2B7863]">
+    All
+  </button>
+
+  <button onclick="filterProducts('fruits')" 
+          class="filter-btn bg-white/20 px-6 py-2 rounded-full 
+                 transition-all duration-300 ease-in-out
+                 hover:-translate-y-1 hover:scale-105
+                 hover:bg-[#0D5441] hover:shadow-lg hover:shadow-[#2B7863]">
+    Fruits
+  </button>
+
+  <button onclick="filterProducts('livestock')" 
+          class="filter-btn bg-white/20 px-6 py-2 rounded-full 
+                 transition-all duration-300 ease-in-out
+                 hover:-translate-y-1 hover:scale-105
+                 hover:bg-[#0D5441] hover:shadow-lg hover:shadow-[#2B7863]">
+    Livestock
+  </button>
+
+  <button onclick="filterProducts('nursery')" 
+          class="filter-btn bg-white/20 px-6 py-2 rounded-full 
+                 transition-all duration-300 ease-in-out
+                 hover:-translate-y-1 hover:scale-105
+                 hover:bg-[#0D5441] hover:shadow-lg hover:shadow-[#2B7863]">
+    Nursery Plants
+  </button>
+
+  <button onclick="filterProducts('herbs')" 
+          class="filter-btn bg-white/20 px-6 py-2 rounded-full 
+                 transition-all duration-300 ease-in-out
+                 hover:-translate-y-1 hover:scale-105
+                 hover:bg-[#0D5441] hover:shadow-lg hover:shadow-[#2B7863]">
+    Herbs
+  </button>
+</div>
+
+    <!-- Product Grid -->
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Glass Card 1 -->
+      <div class="product herbs fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/rosemaryoil.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🌿 Rosemary Oil</h3>
+          <p class="mt-2 text-sm text-green-100">
+           Our pure rosemary oil is extracted from high-quality, hand-picked leaves, preserving its fresh herbal fragrance. It is widely used for hair care, skin care, massage, and aromatherapy. Regular use promotes hair growth, strengthens roots, and reduces hair fall, while also aiding relaxation, reducing stress.It brings the natural benefits of this ancient herb to your daily wellness routine.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.15000 / Liter</span>
+          </div>
+        </div>   
+      </div>
+
+      <!-- Glass Card 2 -->
+     <div class="product herbs fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/7.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🌶 Akabare Chilli (Dalle Khursani)</h3>
+          <p class="mt-2 text-sm text-green-100">
+           Our Akabare chilli, also known as Dalle Khursani, is a round, bright red, extremely spicy chilli grown in hilly regions. It is rich in capsaicin and Vitamin C, known for its strong heat and unique flavor. it is perfect for pickles, chutneys, and traditional dishes, with high demand in local and international markets. Its vibrant color and fiery taste make it a must-have ingredient for authentic Nepali cuisine.
+          </p>
+           <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.200 / kg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Card 3 -->
+      <div class="product herbs fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/Timmur.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold"> 🌰 Sichuan Pepper (Timmur)</h3>
+          <p class="mt-2 text-sm text-green-100">
+           Timur, also known as Sichuan pepper, is a traditional spice known for its fresh citrus aroma and mild tingling sensation. Widely used in Nepali cuisine, it enhances the flavor of meat dishes, pickles, sauces, and spice blends. Grown in high-altitude regions, it is carefully harvested and naturally dried to preserve its essential oils. Beyond its unique taste, Timur is also valued for its digestive and medicinal benefits.
+         </p>
+           <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.800 / kg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Card 4 -->
+      <div class="product fruits fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/lemons.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🍋 Lemon</h3>
+          <p class="mt-2 text-sm text-green-100">
+            Our lemons are fresh, aromatic, and rich in natural sour flavor. Rich in Vitamin C, they are widely used in beverages, cooking, and refreshing recipes.Carefully selected for quality, they offer excellent juiciness and consistent taste. Beyond the kitchen, lemons are valued in natural remedies. They support digestion and help strengthen the immune system.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.50 / kg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Card 5 -->
+      <div class="product fruits fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/kiwi.jpg.webp" 
+             alt="Tomatoes" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🥝 Kiwi fruit</h3>
+          <p class="mt-2 text-sm text-green-100">
+          Our fresh kiwi fruits are naturally sweet and nutrient-rich, with a delicious sweet and tangy flavor. Packed with Vitamin C, fiber, and antioxidants, they are perfect for healthy snacks, juices, and desserts. Carefully harvested to ensure freshness and quality, each fruit delivers great taste and nutrition. Kiwi supports digestion, boosts immunity, and promotes overall wellness.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.200 / kg</span>
+          </div>
+        </div>   
+      </div>
+
+      <!-- Glass Card 6 -->
+      <div class="product fruits fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/oranges.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🍊 Fresh Oranges</h3>
+          <p class="mt-2 text-sm text-green-100">
+            Our juicy oranges are naturally grown in fertile soil under ideal sunlight, delivering sweet, refreshing flavor and farm-fresh quality. Packed with Vitamin C and essential nutrients, they support immunity and hydration. Perfect for fresh consumption, juices, desserts, and healthy snacking, each orange delivers natural goodness in every bite bring true farm freshness to your table.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.150 / kg</span>
+          </div>
+        </div>   
+      </div>
+
+       <!-- Glass Card 7 -->
+      <div class="product livestock fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/cow.jpeg" 
+             alt="Apples" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🐄 Cow milk</h3>
+          <p class="mt-2 text-sm text-green-100">
+          Pure and wholesome cow milk from healthy, free-range cows. Naturally nutritious and packed with protein, vitamins, and minerals, perfect for daily consumption or dairy processing. Our cows are raised with proper care and organic feed to ensure premium quality milk.
+          </p>
+           <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.60 / Liter</span>
+          </div>
+        </div>   
+      </div>
+
+
+      <!-- Glass Card 8 -->
+      <div class="product livestock fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/buffalo.webp" 
+             alt="Apples" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🐃 Buffalo milk</h3>
+          <p class="mt-2 text-sm text-green-100">
+           Fresh, rich, and creamy buffalo milk sourced from healthy, well-cared-for buffaloes. Naturally full of nutrients, protein, and calcium, ideal for drinking, cooking, and dairy products like ghee and paneer. Our buffaloes are raised in hygienic farms ensuring high-quality, chemical-free milk.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.60 / Liter</span>
+          </div>
+        </div>   
+      </div>
+
+    <!-- nursery Plants -->
+
+     <!-- Glass Card 4 -->
+      <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/32.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🌿 Rosemary Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+            Rosemary plants are perennial evergreen shrubs with woody stems and aromatic, needle-like leaves. They grow up to 1–1.5 m tall, with a main tap root and lateral roots. Thriving in sunny, well-drained soil, rosemary is drought-tolerant and easy to maintain, making it ideal for home gardens and herbal farms.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.50 / Plant</span>
+          </div>
+        </div>   
+      </div>
+     <!-- Glass Card 5 -->
+     <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/akabare.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🌶 Akabare Chilli (Dalle Khursani) Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+           Chilli shrubs are perennial and short-lived. They can grow up to 1.5 m in height. Their stems are woody at the base, fleshy and either erect or semi-prostrate. The shrub consists of a main tap root with many lateral roots. The leaves can grow up to 12 cm long and 7.5 cm wide and are unequal in shape with a pointed tip.
+          </p>
+           <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.2.5 / Plant</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Card 6 -->
+      <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/13.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold"> 🌰 Sichuan Pepper (Timmur) Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+           Timur plants are perennial shrubs growing up to 2–3 m tall, with woody stems at the base and green, fleshy young branches. They have a strong tap root with lateral roots. Leaves are pinnate, oval-shaped, 5–10 cm long, with pointed tips. The plant produces small, aromatic red berries used as a spice.
+         </p>
+           <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.35 / Plant</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Card 7 -->
+      <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/lemons-tree.webp" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🍋 Lemon Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+            Lemon plants are perennial evergreen shrubs or small trees that can grow up to 3–6 m tall. They have woody stems with green, flexible young branches and a main tap root with lateral roots. Leaves are glossy, ovate, 5–12 cm long, with pointed tips. The plants produce fragrant flowers and juicy, vitamin-rich fruits.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.50 / Plant</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glass Card 5 -->
+      <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/kiwifruit.jpeg" 
+             alt="Tomatoes" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🥝 Kiwi Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+         Kiwi plants are perennial climbing vines that can grow several meters in length with woody stems at the base and flexible young branches. They have a main tap root with lateral roots. Leaves are large, heart-shaped to oval, 8–15 cm long, with pointed tips. The plants produce fragrant flowers and sweet-tart, nutrient-rich fruits.
+
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.200 / Plant</span>
+          </div>
+        </div>   
+      </div>
+
+      <!-- Glass Card 6 -->
+      <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/21.jpeg" 
+             alt="Apples" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🍎 Apple Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+            Apple plants are perennial deciduous trees that can grow up to 4–6 m tall. They have woody stems at the base and flexible young branches, with a main tap root and lateral roots. Leaves are ovateto elliptical, 5–12 cm long, 3–6 cm wide with pointed tips. The trees produce fragrant flowers and juicy, nutrient-rich fruits.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.200 / Plant</span>
+          </div>
+        </div>   
+      </div>
+
+      <!-- Glass Card 7 -->
+      <div class="product nursery fade-in backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:scale-105 transition duration-500">
+        <img src="images/orange.jpeg" 
+             alt="Rice" class="w-full h-56 object-cover">
+        <div class="p-6 text-white">
+          <h3 class="text-xl font-semibold">🍊 Orange Plant</h3>
+          <p class="mt-2 text-sm text-green-100">
+            Orange plants are perennial evergreen trees that can grow up to 5–8 m in height. Their stems are woody at the base, with young branches that are flexible. The tree has a strong main tap root with many lateral roots. Leaves are glossy, ovate to elliptical, 5–12 cm long, with pointed tips. Orange plants produce juicy and vitamin-rich fruits.
+          </p>
+          <div class="mt-4 text-center">
+            <span class="text-green-300 font-bold">Rs.35 / plant</span>
+          </div>
+        </div>   
+      </div>
+
+  </div>
+
+  </section>
+
+
+  <!-- ================= PREMIUM FOOTER ================= -->
+<footer class="relative bg-gradient-to-br from-green-900 via-emerald-800 to-green-700 text-white pt-16 pb-8 overflow-hidden">
+
+  <!-- Glass Overlay -->
+  <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+
+    <!-- Company Info -->
+    <div>
+      <h2 class="text-xl font-bold mb-4 tracking-wide">
+        🥝 Manashanti Agriculture Kiwi Pvt. Ltd.
+      </h2>
+      <p class="text-sm text-green-100 leading-relaxed">
+        Committed to sustainable farming, organic cultivation,
+        and livestock management. Delivering premium farm
+        products across Nepal and foreign countries.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="font-semibold text-lg mb-4 border-b border-green-400 inline-block">
+        Quick Links
+      </h3>
+      <ul class="space-y-3 text-sm">
+        <li><a href="index.html" class="hover:text-yellow-300 transition duration-300">Home</a></li>
+        <li><a href="ourproduct.html" class="hover:text-yellow-300 transition duration-300">Products</a></li>
+        <li><a href="aboutus.html" class="hover:text-yellow-300 transition duration-300">About Us</a></li>
+        <li><a href="contact us.html" class="hover:text-yellow-300 transition duration-300">Contact Us</a></li>
+         <li><a href="gallery.html" class="hover:text-yellow-300 transition duration-300">Gallery</a></li>
+      </ul>
+    </div>
+
+    <!-- Our Products in Footer -->
+<div>
+  <h3 class="font-semibold text-lg mb-4 border-b border-green-400 inline-block">
+    Our Products
+  </h3>
+  <ul class="space-y-3 text-sm">
+    <li>
+      <a href="javascript:void(0);" 
+         onclick="filterAndScroll('herbs')" 
+         class="hover:text-yellow-300 transition duration-300">
+         Herbs
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0);" 
+         onclick="filterAndScroll('fruits')" 
+         class="hover:text-yellow-300 transition duration-300">
+         Fruits
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0);" 
+         onclick="filterAndScroll('livestock')" 
+         class="hover:text-yellow-300 transition duration-300">
+         Livestock
+      </a>
+    </li>
+    <li>
+      <a href="javascript:void(0);" 
+         onclick="filterAndScroll('nursery')" 
+         class="hover:text-yellow-300 transition duration-300">
+         Nursery Plants
+      </a>
+    </li>
+  </ul>
+</div>
+
+    <!-- Contact Info -->
+    <div>
+     <h3 class="font-semibold text-lg mb-4 border-b border-green-400 inline-block">
+        Contact Us
+      </h3>
+      <p class="text-sm text-green-100 mb-2">
+        <i class="fa-solid fa-location-dot mr-2 text-yellow-300"></i>
+        Triveni-06, Rukum (West), Nepal
+      </p>
+      <p class="text-sm text-green-100 mb-2">
+        <i class="fa-solid fa-phone mr-2 text-yellow-300"></i>
+        +977 9863462325
+      </p>
+      <p class="text-sm text-green-100">
+        <i class="fa-solid fa-envelope mr-2 text-yellow-300"></i>
+        manashantiagro@gmail.com
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Social + Copyright -->
+  <div class="relative mt-12 text-center">
+
+  <!-- Social Icons -->
+<div class="flex justify-center gap-6 mb-6 text-xl">
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/profile.php?id=100064130017844"
+     target="_blank"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-[#1877F2] hover:text-white 
+            transition duration-300">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <!-- YouTube -->
+  <a href="http://youtube.com/@karnaraj-u8v/videos"
+     target="_blank"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-[#FF0000] hover:text-white 
+            transition duration-300">
+    <i class="fab fa-youtube"></i>
+  </a>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/9779863462325?text=Hello%20EverGreen%20Agro,%20I%20want%20to%20know%20more%20about%20your%20products."
+     target="_blank"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-[#25D366] hover:text-white 
+            transition duration-300">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- TikTok -->
+  <a href="https://www.tiktok.com/@karnarajoli1234"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-black hover:text-[#00f2ea] 
+            transition duration-300">
+    <i class="fab fa-tiktok"></i>
+  </a>
+
+  <!-- Phone -->
+  <a href="+977 9863462325"
+     class="w-10 h-10 flex items-center justify-center rounded-full 
+            bg-white/20 text-white
+            hover:bg-green-600 hover:text-white 
+            transition duration-300">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
+</div>
+    <!-- Grey Divider Line -->
+<div class="w-full h-[1px] bg-gray-400 mx-auto mb-6 opacity-50"></div>
+
+    <p class="text-sm text-green-200">
+      © 2026 Manashanti Agriculture Kiwi Pvt. Ltd. All rights reserved.
+    </p>
+  </div>
+
+</footer>
+
+
+  <!-- Smooth Scroll Animation Script on our production section -->
+  <script>
+    const elements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+  
+  // product category
+function filterProducts(category) {
+  const products = document.querySelectorAll('.product');
+
+  products.forEach(product => {
+    if (category === 'all') {
+      product.style.display = 'block';
+    } else {
+      if (product.classList.contains(category)) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    }
+  });
+}
+
+
+  // Filter products for footer 
+  function filterProducts(category) {
+    const products = document.querySelectorAll('.product');
+
+    products.forEach(product => {
+      if (category === 'all') {
+        product.style.display = 'block';
+      } else {
+        if (product.classList.contains(category)) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Filter + scroll smoothly to products section
+  function filterAndScroll(category) {
+    filterProducts(category); // Filter first
+
+    const productsSection = document.querySelector('section.py-20'); // Your products section
+    productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* =========================
+     HAMBURGER MENU LOGIC
+  ========================= */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Close menu when link is clicked (mobile UX)
+  document.querySelectorAll("#mobileMenu a").forEach(item => {
+  item.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+  });
+});
+
+  // preloader
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("preloader");
+
+    setTimeout(() => {
+      loader.classList.remove("opacity-100");
+      loader.classList.add("opacity-0");
+
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 500);
+
+    }, 1000);
+  });
+</script>
+
+<!-- language translator -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      includedLanguages: 'en,ne',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
+}
+
+function translateToNepali(){
+  changeLanguage("ne");
+}
+
+function translateToEnglish(){
+  changeLanguage("en");
+}
+
+function changeLanguage(lang){
+  const interval = setInterval(function(){
+    const select = document.querySelector(".goog-te-combo");
+    if(select){
+      select.value = lang;
+      select.dispatchEvent(new Event("change"));
+      clearInterval(interval);
+    }
+  },200);
+}
+
+/* Remove google banner completely */
+setInterval(function () {
+  const frame = document.querySelector('.goog-te-banner-frame');
+  if (frame) frame.style.display = 'none';
+  document.body.style.top = '0px';
+}, 100);
+
+// gallery media 
+const menu = document.getElementById("menu");
+const arrow = document.getElementById("arrow");
+
+function toggleMenu() {
+  menu.classList.toggle("show");
+  arrow.classList.toggle("rotate-180");
+}
+
+/* Close dropdown when clicking outside */
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".relative")){
+    menu.classList.remove("show");
+    arrow.classList.remove("rotate-180");
+  }
+});
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
